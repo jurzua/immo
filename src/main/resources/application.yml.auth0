@@ -1,0 +1,30 @@
+spring:
+    security:
+        oauth2:
+            client:
+                registration:
+                    auth0:
+                        client-id: wLJGWUwuWd4D3DNh30lijGQzya3L1X9b
+                        client-secret: fA3TktERg4pok6NnnyhSCNC6V3ekrv_DD7BP1VVXmPS8_T-BsozsIm-1AXpOjrhU
+                        scope:
+                            - openid
+                            - profile
+                            - email
+                provider:
+                    auth0:
+                        # trailing slash is important!
+                        issuer-uri: https://dev-pp5b76zq.eu.auth0.com/
+
+server:
+    port: 8080
+
+
+-------------
+
+spring.security.oauth2.client:
+    client-id: 39aba5873e40bd5f6ebd
+    client-secret: 93c0bd2597226c8f77b99e1f7b7e33c75a464f4d
+    user-authorization-uri: https://github.com/login/oauth/authorize
+    access-token-uri: https://github.com/login/oauth/access_token
+    scope: openid
+    grant-type: authorization_code

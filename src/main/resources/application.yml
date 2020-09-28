@@ -1,0 +1,27 @@
+spring:
+    security:
+        oauth2:
+            client:
+                registration:
+                    github:
+                        clientId: 39aba5873e40bd5f6ebd
+                        clientSecret: 93c0bd2597226c8f77b99e1f7b7e33c75a464f4d
+
+github-service:
+    connection-pool-size: 10
+    read-timeout-seconds: 20
+
+spring.datasource.url: jdbc:h2:mem:testdb
+spring.datasource.driverClassName: org.h2.Driver
+spring.datasource.username: sa
+spring.datasource.password: password
+spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+spring.liquibase:
+    enabled: true
+    change-log: classpath:changelog/db.changelog-master.xml
+
+
+server:
+    port: 8080
+
+

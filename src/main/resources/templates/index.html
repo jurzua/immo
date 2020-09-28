@@ -1,0 +1,69 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+<h1>ImmobilienScout 24 Technical Challenge</h1>
+<div sec:authorize="!isAuthenticated()">
+    <a th:href="@{/oauth2/authorization/github}">Log In</a>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <h2 th:text="${name}"></h2>
+
+    <h1>Search repository</h1>
+    <form action="#" th:action="@{/search}" th:object="${searchRepositoryForm}" method="post">
+        <table>
+            <tr><p>Owner: <input type="text" th:field="*{owner}" /> Search in repository name</p></tr>
+            <tr><p>Repository name: <input type="text" th:field="*{repositoryName}" /> Search in username (login)</p></tr>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </table>
+    </form>
+
+    <h1>Search result:</h1>
+    <table border="1px">
+        <tr>
+            <th>Repo Id</th>
+            <th>Repo Name</th>
+            <th>Commits</th>
+            <th>Pulls</th>
+            <th>User id</th>
+            <th>User login</th>
+            <th>Readme</th>
+        </tr>
+        <tr th:each="repo : ${searchRepos}">
+            <td th:text="${repo.id}">1</td>
+            <td th:text="${repo.name}">1</td>
+            <td th:text="${repo.commits}">1</td>
+            <td th:text="${repo.pulls}">1</td>
+            <td th:text="${repo.user.id}">1</td>
+            <td th:text="${repo.user.login}">Text ...</td>
+            <td><a th:href="${repo.readmeLink}">Readme</a></td>
+        </tr>
+    </table>
+
+    <h1>Persistent repositories:</h1>
+    <table border="1px">
+        <tr>
+            <th>Repo Id</th>
+            <th>Repo Name</th>
+            <th>Commits</th>
+            <th>Pulls</th>
+            <th>User id</th>
+            <th>User login</th>
+            <th>Readme</th>
+        </tr>
+        <tr th:each="repo : ${persistentRepos}">
+            <td th:text="${repo.id}">1</td>
+            <td th:text="${repo.name}">1</td>
+            <td th:text="${repo.commits}">1</td>
+            <td th:text="${repo.pulls}">1</td>
+            <td th:text="${repo.user.id}">1</td>
+            <td th:text="${repo.user.login}">Text ...</td>
+            <td><a th:href="${repo.readmeLink}">Readme</a></td>
+        </tr>
+    </table>
+
+
+
+    <a th:href="@{/logout}">Log Out</a>
+</div>
+</body>
+</html>

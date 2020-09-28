@@ -1,0 +1,38 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-user-table" author="jorge">
+        <createTable tableName="user">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_user" />
+            </column>
+            <column name="login" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-repo-table" author="jorge">
+        <createTable tableName="repo">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_repo" />
+            </column>
+            <column name="blobs_url" type="varchar(255)"></column>
+            <column name="name" type="varchar(255)"></column>
+            <column name="full_name" type="varchar(255)"></column>
+            <column name="commits" type="int"></column>
+            <column name="pulls" type="int"></column>
+
+            <column name="user_id" type="bigint"></column>
+
+
+        </createTable>
+        <addForeignKeyConstraint baseTableName="repo" baseColumnNames="user_id"
+                                 constraintName="fk_to_user_key"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
